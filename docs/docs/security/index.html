@@ -324,6 +324,13 @@
     
     
     <li>
+      <a href="/bookkeeper-staging-site/docs/security/index">
+      Overview
+      </a>
+    </li>
+    
+    
+    <li>
       <a href="/bookkeeper-staging-site/docs/security/tls">
       TLS Authentication
       </a>
@@ -404,9 +411,9 @@
 The following security measures are currently supported:</p>
 
 <ol>
-  <li>Authentication of connections to bookies from clients, using either TLS or SASL (Kerberos).</li>
-  <li>Authentication of connections from clients, bookies, autorecovery daemons to ZooKeeper, when using zookeeper based ledger managers.</li>
-  <li>Encryption of data transferred between bookies and clients, between bookies and autorecovery daemons using TLS.
+  <li>Authentication of connections to bookies from clients, using either <a href="./tls">TLS</a> or <a href="./sasl">SASL (Kerberos)</a>.</li>
+  <li>Authentication of connections from clients, bookies, autorecovery daemons to <a href="./zookeeper">ZooKeeper</a>, when using zookeeper based ledger managers.</li>
+  <li>Encryption of data transferred between bookies and clients, between bookies and autorecovery daemons using <a href="./tls">TLS</a>.
 &lt;!– TODO: authorization is not supported yet</li>
   <li>Authorization of read / write operations by clients</li>
   <li>Authorization is pluggable and integration with external authorization services is supported

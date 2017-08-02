@@ -324,6 +324,13 @@
     
     
     <li>
+      <a href="/bookkeeper-staging-site/docs/security/index">
+      Overview
+      </a>
+    </li>
+    
+    
+    <li>
       <a href="/bookkeeper-staging-site/docs/security/tls">
       TLS Authentication
       </a>
@@ -501,31 +508,31 @@ sudo /usr/sbin/kadmin.local -q "ktadd -k /etc/security/keytabs/{keytabname}.keyt
     <p>Add a suitably modified JAAS file similar to the one below to each Bookie’s config directory, let’s call it <code class="highlighter-rouge">bookie_jaas.conf</code>
 for this example (note that each bookie should have its own keytab):</p>
 
-    <p>Bookie {
+    <div class="highlighter-rouge"><pre class="highlight"><code> Bookie {
      com.sun.security.auth.module.Krb5LoginModule required
      useKeyTab=true
      storeKey=true
-     keyTab=”/etc/security/keytabs/bookie.keytab”
-     principal=”bookkeeper/bk1.hostname.com@EXAMPLE.COM”;
- };</p>
-
-    <p>// ZooKeeper client authentication
+     keyTab="/etc/security/keytabs/bookie.keytab"
+     principal="bookkeeper/bk1.hostname.com@EXAMPLE.COM";
+ };
+ // ZooKeeper client authentication
  Client {
      com.sun.security.auth.module.Krb5LoginModule required
      useKeyTab=true
      storeKey=true
-     keyTab=”/etc/security/keytabs/bookie.keytab”
-     principal=”bookkeeper/bk1.hostname.com@EXAMPLE.COM”;
- };</p>
-
-    <p>// If you are running <code class="highlighter-rouge">autorecovery</code> along with bookies
+     keyTab="/etc/security/keytabs/bookie.keytab"
+     principal="bookkeeper/bk1.hostname.com@EXAMPLE.COM";
+ };
+ // If you are running `autorecovery` along with bookies
  Auditor {
      com.sun.security.auth.module.Krb5LoginModule required
      useKeyTab=true
      storeKey=true
-     keyTab=”/etc/security/keytabs/bookie.keytab”
-     principal=”bookkeeper/bk1.hostname.com@EXAMPLE.COM”;
- };</p>
+     keyTab="/etc/security/keytabs/bookie.keytab"
+     principal="bookkeeper/bk1.hostname.com@EXAMPLE.COM";
+ };
+</code></pre>
+    </div>
   </li>
 </ol>
 
@@ -560,7 +567,7 @@ It allows the bookie to login using the keytab specified in this section. See <a
   </li>
 </ol>
 
-<h3 id="configuring-kafka-clients">Configuring Kafka Clients</h3>
+<h3 id="configuring-clients">Configuring Clients</h3>
 
 <p>To configure SASL authentication on the clients:</p>
 
@@ -571,13 +578,15 @@ It allows the bookie to login using the keytab specified in this section. See <a
  how the clients like writers and readers can connect to the Bookies. The following is an example configuration for a client using
  a keytab (recommended for long-running processes):</p>
 
-    <p>BookKeeper {
+    <div class="highlighter-rouge"><pre class="highlight"><code> BookKeeper {
      com.sun.security.auth.module.Krb5LoginModule required
      useKeyTab=true
      storeKey=true
-     keyTab=”/etc/security/keytabs/bookkeeper.keytab”
-     principal=”bookkeeper-client-1@EXAMPLE.COM”;
- };</p>
+     keyTab="/etc/security/keytabs/bookkeeper.keytab"
+     principal="bookkeeper-client-1@EXAMPLE.COM";
+ };
+</code></pre>
+    </div>
   </li>
   <li>
     <p>Pass the name of the JAAS file as a JVM parameter to the client JVM:</p>
@@ -630,7 +639,7 @@ It allows the bookie to login using the keytab specified in this section. See <a
 <li class="toc-entry toc-h4"><a href="#kerberos-principals">Kerberos Principals</a></li>
 <li class="toc-entry toc-h5"><a href="#all-hosts-must-be-reachable-using-hostnames">All hosts must be reachable using hostnames</a></li>
 <li class="toc-entry toc-h3"><a href="#configuring-bookies">Configuring Bookies</a></li>
-<li class="toc-entry toc-h3"><a href="#configuring-kafka-clients">Configuring Kafka Clients</a></li>
+<li class="toc-entry toc-h3"><a href="#configuring-clients">Configuring Clients</a></li>
 <li class="toc-entry toc-h2"><a href="#enabling-logging-for-sasl">Enabling Logging for SASL</a></li>
 </ul>
 </div>

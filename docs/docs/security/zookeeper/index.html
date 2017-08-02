@@ -324,6 +324,13 @@
     
     
     <li>
+      <a href="/bookkeeper-staging-site/docs/security/index">
+      Overview
+      </a>
+    </li>
+    
+    
+    <li>
       <a href="/bookkeeper-staging-site/docs/security/tls">
       TLS Authentication
       </a>
@@ -405,7 +412,7 @@
 <p>To enable <code class="highlighter-rouge">ZooKeeper</code> authentication on Bookies or Clients, there are two necessary steps:</p>
 
 <ol>
-  <li>Create a <code class="highlighter-rouge">JAAS</code> login file and set the appropriate system property to point to it as described in <a href="./security/sasl#notes">GSSAPI (Kerberos)</a>.</li>
+  <li>Create a <code class="highlighter-rouge">JAAS</code> login file and set the appropriate system property to point to it as described in <a href="../sasl#notes">GSSAPI (Kerberos)</a>.</li>
   <li>Set the configuration property <code class="highlighter-rouge">zkEnableSecurity</code> in each bookie to <code class="highlighter-rouge">true</code>.</li>
 </ol>
 
