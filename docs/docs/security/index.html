@@ -413,19 +413,31 @@ The following security measures are currently supported:</p>
 <ol>
   <li>Authentication of connections to bookies from clients, using either <a href="./tls">TLS</a> or <a href="./sasl">SASL (Kerberos)</a>.</li>
   <li>Authentication of connections from clients, bookies, autorecovery daemons to <a href="./zookeeper">ZooKeeper</a>, when using zookeeper based ledger managers.</li>
-  <li>Encryption of data transferred between bookies and clients, between bookies and autorecovery daemons using <a href="./tls">TLS</a>.
-&lt;!– TODO: authorization is not supported yet</li>
-  <li>Authorization of read / write operations by clients</li>
-  <li>Authorization is pluggable and integration with external authorization services is supported
-–&gt;</li>
+  <li>Encryption of data transferred between bookies and clients, between bookies and autorecovery daemons using <a href="./tls">TLS</a>.</li>
 </ol>
 
 <p>It’s worth noting that security is optional - non-secured clusters are supported, as well as a mix of authenticated, unauthenticated, encrypted and non-encrypted clients.</p>
 
-<p>(TBD: generate a toc ?)</p>
+<p>NOTE: currenlty <code class="highlighter-rouge">authorization</code> is not yet available in <code class="highlighter-rouge">4.5.0</code>. The Apache BookKeeper community is looking for adding this feature in subsequent releases.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<ul>
+  <li><a href="../tls">Encryption and Authentication using TLS</a></li>
+  <li><a href="../sasl">Authentication using SASL</a></li>
+  <li><a href="../zookeeper">ZooKeeper Authentication</a></li>
+</ul>
 
         </section>
 
+        
+        <nav class="pagination is-centered">
+          
+          
+          <a class="pagination-next" href="../tls.html">Next</a>
+          
+          <ul class="pagination-list"></ul>
+        </nav>
         
       </div>
     </div>
@@ -436,6 +448,7 @@ The following security measures are currently supported:</p>
 <div class="toc">
   <h2 class="title">BookKeeper Security</h2>
   <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#next-steps">Next Steps</a></li>
 </ul>
 </div>
 
