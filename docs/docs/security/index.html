@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Apache BookKeeper - Performance tuning</title>
+    <title>Apache BookKeeper - BookKeeper Security</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -387,7 +387,7 @@
         <nav class="level bk-level">
           <div class="level-left">
             <div class="level-item">
-              <h1 class="title">Performance tuning</h1>
+              <h1 class="title">BookKeeper Security</h1>
             </div>
           </div>
           
@@ -400,7 +400,22 @@
 
       <div class="content">
         <section class="bk-main-content">
-          
+          <p>In the 4.5.0 release, the BookKeeper community added a number of features that can be used, together or separately, to secure a BookKeeper cluster.
+The following security measures are currently supported:</p>
+
+<ol>
+  <li>Authentication of connections to bookies from clients, using either TLS or SASL (Kerberos).</li>
+  <li>Authentication of connections from clients, bookies, autorecovery daemons to ZooKeeper, when using zookeeper based ledger managers.</li>
+  <li>Encryption of data transferred between bookies and clients, between bookies and autorecovery daemons using TLS.
+&lt;!– TODO: authorization is not supported yet</li>
+  <li>Authorization of read / write operations by clients</li>
+  <li>Authorization is pluggable and integration with external authorization services is supported
+–&gt;</li>
+</ol>
+
+<p>It’s worth noting that security is optional - non-secured clusters are supported, as well as a mix of authenticated, unauthenticated, encrypted and non-encrypted clients.</p>
+
+<p>(TBD: generate a toc ?)</p>
 
         </section>
 
@@ -412,7 +427,7 @@
       
       
 <div class="toc">
-  <h2 class="title">Performance tuning</h2>
+  <h2 class="title">BookKeeper Security</h2>
   <ul class="section-nav">
 </ul>
 </div>

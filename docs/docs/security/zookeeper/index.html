@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Apache BookKeeper - Performance tuning</title>
+    <title>Apache BookKeeper - ZooKeeper Authentication</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -387,7 +387,7 @@
         <nav class="level bk-level">
           <div class="level-left">
             <div class="level-item">
-              <h1 class="title">Performance tuning</h1>
+              <h1 class="title">ZooKeeper Authentication</h1>
             </div>
           </div>
           
@@ -400,7 +400,50 @@
 
       <div class="content">
         <section class="bk-main-content">
-          
+          <h2 id="new-clusters">New Clusters</h2>
+
+<p>To enable <code class="highlighter-rouge">ZooKeeper</code> authentication on Bookies or Clients, there are two necessary steps:</p>
+
+<ol>
+  <li>Create a <code class="highlighter-rouge">JAAS</code> login file and set the appropriate system property to point to it as described in <a href="./security/sasl#notes">GSSAPI (Kerberos)</a>.</li>
+  <li>Set the configuration property <code class="highlighter-rouge">zkEnableSecurity</code> in each bookie to <code class="highlighter-rouge">true</code>.</li>
+</ol>
+
+<p>The metadata stored in <code class="highlighter-rouge">ZooKeeper</code> is such that only certain clients will be able to modify the corresponding znodes, but znodes are world readable.
+The rationale behind this decision is that the data stored in ZooKeeper is not sensitive, but inappropriate manipulation of znodes can cause cluster
+disruption.</p>
+
+<h2 id="migrating-clusters">Migrating Clusters</h2>
+
+<p>If you are running a version of BookKeeper that does not support security or simply with security disabled, and you want to make the cluster secure,
+then you need to execute the following steps to enable ZooKeeper authentication with minimal disruption to your operations.</p>
+
+<ol>
+  <li>Perform a rolling restart setting the <code class="highlighter-rouge">JAAS</code> login file, which enables bookie or clients to authenticate. At the end of the rolling restart,
+ bookies (or clients) are able to manipulate znodes with strict ACLs, but they will not create znodes with those ACLs.</li>
+  <li>Perform a second rolling restart of bookies, this time setting the configuration parameter <code class="highlighter-rouge">zkEnableSecurity</code> to true, which enables the use
+ of secure ACLs when creating znodes.</li>
+  <li>Currently we don’t have provide a tool to set acls on old znodes. You are recommended to set it manually using ZooKeeper tools.</li>
+</ol>
+
+<p>It is also possible to turn off authentication in a secured cluster. To do it, follow these steps:</p>
+
+<ol>
+  <li>Perform a rolling restart of bookies setting the <code class="highlighter-rouge">JAAS</code> login file, which enable bookies to authenticate, but setting <code class="highlighter-rouge">zkEnableSecurity</code> to <code class="highlighter-rouge">false</code>.
+ At the end of rolling restart, bookies stop creating znodes with secure ACLs, but are still able to authenticate and manipulate all znodes.</li>
+  <li>You can use ZooKeeper tools to manually reset all ACLs under the znode set in <code class="highlighter-rouge">zkLedgersRootPath</code>, which defaults to <code class="highlighter-rouge">/ledgers</code>.</li>
+  <li>Perform a second rolling restart of bookies, this time omitting the system property that sets the <code class="highlighter-rouge">JAAS</code> login file.</li>
+</ol>
+
+<h2 id="migrating-the-zookeeper-ensemble">Migrating the ZooKeeper ensemble</h2>
+
+<p>It is also necessary to enable authentication on the <code class="highlighter-rouge">ZooKeeper</code> ensemble. To do it, we need to perform a rolling restart of the ensemble and
+set a few properties. Please refer to the ZooKeeper documentation for more details.</p>
+
+<ol>
+  <li><a href="http://zookeeper.apache.org/doc/r3.4.6/zookeeperProgrammers.html#sc_ZooKeeperAccessControl">Apache ZooKeeper Documentation</a></li>
+  <li><a href="https://cwiki.apache.org/confluence/display/ZOOKEEPER/Zookeeper+and+SASL">Apache ZooKeeper Wiki</a></li>
+</ol>
 
         </section>
 
@@ -412,8 +455,11 @@
       
       
 <div class="toc">
-  <h2 class="title">Performance tuning</h2>
+  <h2 class="title">ZooKeeper Authentication</h2>
   <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#new-clusters">New Clusters</a></li>
+<li class="toc-entry toc-h2"><a href="#migrating-clusters">Migrating Clusters</a></li>
+<li class="toc-entry toc-h2"><a href="#migrating-the-zookeeper-ensemble">Migrating the ZooKeeper ensemble</a></li>
 </ul>
 </div>
 

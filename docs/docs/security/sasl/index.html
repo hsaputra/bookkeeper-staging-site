@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Apache BookKeeper - Performance tuning</title>
+    <title>Apache BookKeeper - Authentication using SASL</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -387,7 +387,7 @@
         <nav class="level bk-level">
           <div class="level-left">
             <div class="level-item">
-              <h1 class="title">Performance tuning</h1>
+              <h1 class="title">Authentication using SASL</h1>
             </div>
           </div>
           
@@ -400,7 +400,214 @@
 
       <div class="content">
         <section class="bk-main-content">
-          
+          <p>Bookies support client authentication via SASL. Currently we only support GSSAPI (Kerberos). We will start
+with a general description of how to configure <code class="highlighter-rouge">SASL</code> for bookies, clients and autorecovery daemons, followed
+by mechanism-specific details and wrap up with some operational details.</p>
+
+<h2 id="sasl-configuration-for-bookies">SASL configuration for Bookies</h2>
+
+<ol>
+  <li>Select the mechanisms to enable in the bookies. <code class="highlighter-rouge">GSSAPI</code> is the only mechanism currently supported by BookKeeper.</li>
+  <li>Add a <code class="highlighter-rouge">JAAS</code> config file for the selected mechanisms as described in the examples for setting up <a href="#kerberos">GSSAPI (Kerberos)</a>.</li>
+  <li>
+    <p>Pass the <code class="highlighter-rouge">JAAS</code> config file location as JVM parameter to each Bookie. For example:</p>
+
+    <p>-Djava.security.auth.login.config=/etc/bookkeeper/bookie_jaas.conf</p>
+  </li>
+  <li>
+    <p>Enable SASL auth plugin in bookies, by setting <code class="highlighter-rouge">bookieAuthProviderFactoryClass</code> to <code class="highlighter-rouge">org.apache.bookkeeper.sasl.SASLBookieAuthProviderFactory</code>.</p>
+
+    <p>bookieAuthProviderFactoryClass=org.apache.bookkeeper.sasl.SASLBookieAuthProviderFactory</p>
+  </li>
+  <li>
+    <p>If you are running <code class="highlighter-rouge">autorecovery</code> along with bookies, then you want to enable SASL auth plugin for <code class="highlighter-rouge">autorecovery</code>, by setting
+ <code class="highlighter-rouge">clientAuthProviderFactoryClass</code> to <code class="highlighter-rouge">org.apache.bookkeeper.sasl.SASLClientProviderFactory</code>.</p>
+
+    <p>clientAuthProviderFactoryClass=org.apache.bookkeeper.sasl.SASLClientProviderFactory</p>
+  </li>
+  <li>Follow the steps in <a href="#kerberos">GSSAPI (Kerberos)</a> to configure SASL.</li>
+</ol>
+
+<h4 id="-important-notes"><a name="notes"></a> Important Notes</h4>
+
+<ol>
+  <li><code class="highlighter-rouge">Bookie</code> is a section name in the JAAS file used by each bookie. This section tells the bookie which principal to use
+ and the location of the keytab where the principal is stored. It allows the bookie to login using the keytab specified in this section.</li>
+  <li><code class="highlighter-rouge">Auditor</code> is a section name in the JASS file used by <code class="highlighter-rouge">autorecovery</code> daemon (it can be co-run with bookies). This section tells the
+ <code class="highlighter-rouge">autorecovery</code> daemon which principal to use and the location of the keytab where the principal is stored. It allows the bookie to
+ login using the keytab specified in this section.</li>
+  <li>The <code class="highlighter-rouge">Client</code> section is used to authenticate a SASL connection with ZooKeeper. It also allows the bookies to set ACLs on ZooKeeper nodes
+ which locks these nodes down so that only the bookies can modify it. It is necessary to have the same primary name across all bookies.
+ If you want to use a section name other than <code class="highlighter-rouge">Client</code>, set the system property <code class="highlighter-rouge">zookeeper.sasl.client</code> to the appropriate name
+ (e.g <code class="highlighter-rouge">-Dzookeeper.sasl.client=ZKClient</code>).</li>
+  <li>ZooKeeper uses <code class="highlighter-rouge">zookeeper</code> as the service name by default. If you want to change this, set the system property
+ <code class="highlighter-rouge">zookeeper.sasl.client.username</code> to the appropriate name (e.g. <code class="highlighter-rouge">-Dzookeeper.sasl.client.username=zk</code>).</li>
+</ol>
+
+<h2 id="sasl-configuration-for-clients">SASL configuration for Clients</h2>
+
+<p>To configure <code class="highlighter-rouge">SASL</code> authentication on the clients:</p>
+
+<ol>
+  <li>Select a <code class="highlighter-rouge">SASL</code> mechanism for authentication and add a <code class="highlighter-rouge">JAAS</code> config file for the selected mechanism as described in the examples for
+ setting up <a href="#kerberos">GSSAPI (Kerberos)</a>.</li>
+  <li>
+    <p>Pass the <code class="highlighter-rouge">JAAS</code> config file location as JVM parameter to each client JVM. For example:</p>
+
+    <p>-Djava.security.auth.login.config=/etc/bookkeeper/bookkeeper_jaas.conf</p>
+  </li>
+  <li>
+    <p>Configure the following properties in bookkeeper <code class="highlighter-rouge">ClientConfiguration</code>:</p>
+
+    <p>clientAuthProviderFactoryClass=org.apache.bookkeeper.sasl.SASLClientProviderFactory</p>
+  </li>
+</ol>
+
+<p>Follow the steps in <a href="#kerberos">GSSAPI (Kerberos)</a> to configure SASL for the selected mechanism.</p>
+
+<h2 id="-authentication-using-saslkerberos"><a name="kerberos"></a> Authentication using SASL/Kerberos</h2>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<h4 id="kerberos">Kerberos</h4>
+
+<p>If your organization is already using a Kerberos server (for example, by using <code class="highlighter-rouge">Active Directory</code>), there is no need to
+install a new server just for BookKeeper. Otherwise you will need to install one, your Linux vendor likely has packages
+for <code class="highlighter-rouge">Kerberos</code> and a short guide on how to install and configure it (<a href="https://help.ubuntu.com/community/Kerberos">Ubuntu</a>,
+<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/installing-kerberos.html">Redhat</a>).
+Note that if you are using Oracle Java, you will need to download JCE policy files for your Java version and copy them to <code class="highlighter-rouge">$JAVA_HOME/jre/lib/security</code>.</p>
+
+<h4 id="kerberos-principals">Kerberos Principals</h4>
+
+<p>If you are using the organization’s Kerberos or Active Directory server, ask your Kerberos administrator for a principal
+for each Bookie in your cluster and for every operating system user that will access BookKeeper with Kerberos authentication
+(via clients and tools).</p>
+
+<p>If you have installed your own Kerberos, you will need to create these principals yourself using the following commands:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo /usr/sbin/kadmin.local -q 'addprinc -randkey bookkeeper/{hostname}@{REALM}'
+sudo /usr/sbin/kadmin.local -q "ktadd -k /etc/security/keytabs/{keytabname}.keytab bookkeeper/{hostname}@{REALM}"
+</code></pre>
+</div>
+
+<h5 id="all-hosts-must-be-reachable-using-hostnames">All hosts must be reachable using hostnames</h5>
+
+<p>It is a <em>Kerberos</em> requirement that all your hosts can be resolved with their FQDNs.</p>
+
+<h3 id="configuring-bookies">Configuring Bookies</h3>
+
+<ol>
+  <li>
+    <p>Add a suitably modified JAAS file similar to the one below to each Bookie’s config directory, let’s call it <code class="highlighter-rouge">bookie_jaas.conf</code>
+for this example (note that each bookie should have its own keytab):</p>
+
+    <p>Bookie {
+     com.sun.security.auth.module.Krb5LoginModule required
+     useKeyTab=true
+     storeKey=true
+     keyTab=”/etc/security/keytabs/bookie.keytab”
+     principal=”bookkeeper/bk1.hostname.com@EXAMPLE.COM”;
+ };</p>
+
+    <p>// ZooKeeper client authentication
+ Client {
+     com.sun.security.auth.module.Krb5LoginModule required
+     useKeyTab=true
+     storeKey=true
+     keyTab=”/etc/security/keytabs/bookie.keytab”
+     principal=”bookkeeper/bk1.hostname.com@EXAMPLE.COM”;
+ };</p>
+
+    <p>// If you are running <code class="highlighter-rouge">autorecovery</code> along with bookies
+ Auditor {
+     com.sun.security.auth.module.Krb5LoginModule required
+     useKeyTab=true
+     storeKey=true
+     keyTab=”/etc/security/keytabs/bookie.keytab”
+     principal=”bookkeeper/bk1.hostname.com@EXAMPLE.COM”;
+ };</p>
+  </li>
+</ol>
+
+<p>The <code class="highlighter-rouge">Bookie</code> section in the JAAS file tells the bookie which principal to use and the location of the keytab where this principal is stored.
+It allows the bookie to login using the keytab specified in this section. See <a href="#notes">notes</a> for more details on Zookeeper’s SASL configuration.</p>
+
+<ol>
+  <li>
+    <p>Pass the name of the JAAS file as a JVM parameter to each Bookie:</p>
+
+    <p>-Djava.security.auth.login.config=/etc/bookkeeper/bookie_jaas.conf</p>
+  </li>
+</ol>
+
+<p>You may also wish to specify the path to the <code class="highlighter-rouge">krb5.conf</code> file
+(see <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/jgss/tutorials/KerberosReq.html">JDK’s Kerberos Requirements</a> for more details):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>-Djava.security.krb5.conf=/etc/bookkeeper/krb5.conf
+</code></pre>
+</div>
+
+<ol>
+  <li>
+    <p>Make sure the keytabs configured in the JAAS file are readable by the operating system user who is starting the Bookies.</p>
+  </li>
+  <li>
+    <p>Enable SASL authentication plugin in the bookies by setting following parameters.</p>
+
+    <p>bookieAuthProviderFactoryClass=org.apache.bookkeeper.sasl.SASLBookieAuthProviderFactory
+ # if you run <code class="highlighter-rouge">autorecovery</code> along with bookies
+ clientAuthProviderFactoryClass=org.apache.bookkeeper.sasl.SASLClientProviderFactory</p>
+  </li>
+</ol>
+
+<h3 id="configuring-kafka-clients">Configuring Kafka Clients</h3>
+
+<p>To configure SASL authentication on the clients:</p>
+
+<ol>
+  <li>
+    <p>Clients will authenticate to the cluster with their own principal (usually with the same name as the user running the client),
+ so obtain or create these principals as needed. Then create a <code class="highlighter-rouge">JAAS</code> file for each principal. The <code class="highlighter-rouge">BookKeeper</code> section describes
+ how the clients like writers and readers can connect to the Bookies. The following is an example configuration for a client using
+ a keytab (recommended for long-running processes):</p>
+
+    <p>BookKeeper {
+     com.sun.security.auth.module.Krb5LoginModule required
+     useKeyTab=true
+     storeKey=true
+     keyTab=”/etc/security/keytabs/bookkeeper.keytab”
+     principal=”bookkeeper-client-1@EXAMPLE.COM”;
+ };</p>
+  </li>
+  <li>
+    <p>Pass the name of the JAAS file as a JVM parameter to the client JVM:</p>
+
+    <p>-Djava.security.auth.login.config=/etc/bookkeeper/bookkeeper_jaas.conf</p>
+  </li>
+</ol>
+
+<p>You may also wish to specify the path to the <code class="highlighter-rouge">krb5.conf</code> file (see
+<a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/jgss/tutorials/KerberosReq.html">JDK’s Kerberos Requirements</a> for more details).</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>-Djava.security.krb5.conf=/etc/bookkeeper/krb5.conf
+</code></pre>
+</div>
+
+<ol>
+  <li>
+    <p>Make sure the keytabs configured in the <code class="highlighter-rouge">bookkeeper_jaas.conf</code> are readable by the operating system user who is starting bookkeeper client.</p>
+  </li>
+  <li>
+    <p>Enable SASL authentication plugin in the client by setting following parameters.</p>
+
+    <p>clientAuthProviderFactoryClass=org.apache.bookkeeper.sasl.SASLClientProviderFactory</p>
+  </li>
+</ol>
+
+<h2 id="enabling-logging-for-sasl">Enabling Logging for SASL</h2>
+
+<p>To enable SASL debug output, you can set <code class="highlighter-rouge">sun.security.krb5.debug</code> system property to <code class="highlighter-rouge">true</code>.</p>
+
 
         </section>
 
@@ -412,8 +619,19 @@
       
       
 <div class="toc">
-  <h2 class="title">Performance tuning</h2>
+  <h2 class="title">Authentication using SASL</h2>
   <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#sasl-configuration-for-bookies">SASL configuration for Bookies</a></li>
+<li class="toc-entry toc-h4"><a href="#-important-notes"> Important Notes</a></li>
+<li class="toc-entry toc-h2"><a href="#sasl-configuration-for-clients">SASL configuration for Clients</a></li>
+<li class="toc-entry toc-h2"><a href="#-authentication-using-saslkerberos"> Authentication using SASL/Kerberos</a></li>
+<li class="toc-entry toc-h3"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-entry toc-h4"><a href="#kerberos">Kerberos</a></li>
+<li class="toc-entry toc-h4"><a href="#kerberos-principals">Kerberos Principals</a></li>
+<li class="toc-entry toc-h5"><a href="#all-hosts-must-be-reachable-using-hostnames">All hosts must be reachable using hostnames</a></li>
+<li class="toc-entry toc-h3"><a href="#configuring-bookies">Configuring Bookies</a></li>
+<li class="toc-entry toc-h3"><a href="#configuring-kafka-clients">Configuring Kafka Clients</a></li>
+<li class="toc-entry toc-h2"><a href="#enabling-logging-for-sasl">Enabling Logging for SASL</a></li>
 </ul>
 </div>
 
