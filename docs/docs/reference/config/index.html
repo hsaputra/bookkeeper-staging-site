@@ -252,6 +252,13 @@
     
     
     <li>
+      <a href="/bookkeeper-staging-site/docs/admin/production">
+      Production Deployment
+      </a>
+    </li>
+    
+    
+    <li>
       <a href="/bookkeeper-staging-site/docs/admin/bookies">
       BookKeeper administration
       </a>
@@ -481,13 +488,6 @@ interface (the interface it uses to establish its identity). By default, loopbac
       <td><p>Whether the bookie should use its hostname to register with the ZooKeeper coordination service. When <code class="highlighter-rouge">false</code>, the bookie will use its IP address for the registration.</p>
 </td>
       <td><code>false</code></td>
-    </tr>
-    
-    <tr id="explicitLacInterval">
-      <td><code>explicitLacInterval</code></td>
-      <td><p>Interval between sending an explicit LAC in seconds</p>
-</td>
-      <td><code>1</code></td>
     </tr>
     
     <tr id="allowEphemeralPorts">
@@ -889,7 +889,7 @@ You can disable <code class="highlighter-rouge">padding-writes</code> by setting
       <td><code>journalMaxGroupWaitMSec</code></td>
       <td><p>Maximum latency to impose on a journal write to achieve grouping.</p>
 </td>
-      <td><code>200</code></td>
+      <td><code>2</code></td>
     </tr>
     
     <tr id="journalBufferedWritesThreshold">
