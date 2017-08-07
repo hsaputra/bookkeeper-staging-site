@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Apache BookKeeper - Customized placement policies</title>
+    <title>Apache BookKeeper - BookKeeper Security</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -411,7 +411,7 @@
         <nav class="level bk-level">
           <div class="level-left">
             <div class="level-item">
-              <h1 class="title">Customized placement policies</h1>
+              <h1 class="title">BookKeeper Security</h1>
             </div>
           </div>
           
@@ -424,10 +424,37 @@
 
       <div class="content">
         <section class="bk-main-content">
-          
+          <p>In the 4.5.0 release, the BookKeeper community added a number of features that can be used, together or separately, to secure a BookKeeper cluster.
+The following security measures are currently supported:</p>
+
+<ol>
+  <li>Authentication of connections to bookies from clients, using either <a href="./tls">TLS</a> or <a href="./sasl">SASL (Kerberos)</a>.</li>
+  <li>Authentication of connections from clients, bookies, autorecovery daemons to <a href="./zookeeper">ZooKeeper</a>, when using zookeeper based ledger managers.</li>
+  <li>Encryption of data transferred between bookies and clients, between bookies and autorecovery daemons using <a href="./tls">TLS</a>.</li>
+</ol>
+
+<p>It’s worth noting that security is optional - non-secured clusters are supported, as well as a mix of authenticated, unauthenticated, encrypted and non-encrypted clients.</p>
+
+<p>NOTE: currently <code class="highlighter-rouge">authorization</code> is not yet available in <code class="highlighter-rouge">4.5.0</code>. The Apache BookKeeper community is looking for adding this feature in subsequent releases.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<ul>
+  <li><a href="./tls">Encryption and Authentication using TLS</a></li>
+  <li><a href="./sasl">Authentication using SASL</a></li>
+  <li><a href="./zookeeper">ZooKeeper Authentication</a></li>
+</ul>
 
         </section>
 
+        
+        <nav class="pagination is-centered">
+          
+          
+          <a class="pagination-next" href="./tls.html">Next</a>
+          
+          <ul class="pagination-list"></ul>
+        </nav>
         
       </div>
     </div>
@@ -436,8 +463,9 @@
       
       
 <div class="toc">
-  <h2 class="title">Customized placement policies</h2>
+  <h2 class="title">BookKeeper Security</h2>
   <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#next-steps">Next Steps</a></li>
 </ul>
 </div>
 
