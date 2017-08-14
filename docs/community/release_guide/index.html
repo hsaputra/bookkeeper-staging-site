@@ -257,10 +257,8 @@
     </ul>
   </li>
   <li><a href="#finalize-the-release" id="markdown-toc-finalize-the-release">Finalize the release</a>    <ul>
-      <li><a href="#deploy-artifacts-to-maven-central-repository" id="markdown-toc-deploy-artifacts-to-maven-central-repository">Deploy artifacts to Maven Central Repository</a>        <ul>
-          <li><a href="#deploy-source-release-to-distapacheorg" id="markdown-toc-deploy-source-release-to-distapacheorg">Deploy source release to dist.apache.org</a></li>
-        </ul>
-      </li>
+      <li><a href="#deploy-artifacts-to-maven-central-repository" id="markdown-toc-deploy-artifacts-to-maven-central-repository">Deploy artifacts to Maven Central Repository</a></li>
+      <li><a href="#deploy-source-release-to-distapacheorg" id="markdown-toc-deploy-source-release-to-distapacheorg">Deploy source release to dist.apache.org</a></li>
       <li><a href="#update-website" id="markdown-toc-update-website">Update Website</a></li>
       <li><a href="#update-dockerfile" id="markdown-toc-update-dockerfile">Update Dockerfile</a></li>
       <li><a href="#mark-the-version-as-released-in-jira-and-github" id="markdown-toc-mark-the-version-as-released-in-jira-and-github">Mark the version as released in JIRA and Github</a></li>
@@ -801,7 +799,7 @@ Thanks everyone!
 
 <p>Use the Apache Nexus repository to release the staged binary artifacts to the Maven Central repository. In the <code class="highlighter-rouge">Staging Repositories</code> section, find the relevant release candidate <code class="highlighter-rouge">orgapachebookkeeper-XXX</code> entry and click <code class="highlighter-rouge">Release</code>. Drop all other release candidates that are not being released.</p>
 
-<h4 id="deploy-source-release-to-distapacheorg">Deploy source release to dist.apache.org</h4>
+<h3 id="deploy-source-release-to-distapacheorg">Deploy source release to dist.apache.org</h3>
 
 <p>Copy the source release from the <code class="highlighter-rouge">dev</code> repository to the <code class="highlighter-rouge">release</code> repository at <code class="highlighter-rouge">dist.apache.org</code> using Subversion.</p>
 
