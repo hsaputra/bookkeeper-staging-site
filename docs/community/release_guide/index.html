@@ -814,8 +814,10 @@ Thanks everyone!
     <p>Create the documentation for <code class="highlighter-rouge">${VERSION}</code>. Run the <code class="highlighter-rouge">release.sh</code> to generate the branch for <code class="highlighter-rouge">${VERSION}</code> and bump
  the versions for website documentation.</p>
 
-    <p>$ cd site
- $ ./site/release.sh</p>
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">cd </span>site
+ <span class="nv">$ </span>./site/release.sh
+</code></pre>
+    </div>
 
     <p>Once run the <code class="highlighter-rouge">release.sh</code>, please send a pull request for it and get approval from any committers, then merge it.
  The CI job will automatically update the website in a few minutes. Please review the website to make sure the
@@ -882,11 +884,15 @@ Thanks everyone!
 
 <h3 id="apache-mailing-lists">Apache mailing lists</h3>
 
-<p>Announce on the dev@ mailing list that the release has been finished.</p>
+<ul>
+  <li>Announce on the dev@ mailing list that the release has been finished.</li>
+  <li>Announce on the release on the user@ mailing list, listing major improvements and contributions.</li>
+  <li>Announce the release on the announce@apache.org mailing list.</li>
+</ul>
 
-<p>Announce on the release on the user@ mailing list, listing major improvements and contributions.</p>
-
-<p>(NOTE: Make sure sending the announce email using apache email, otherwise announce@apache.org will reject your email.)</p>
+<blockquote>
+  <p>NOTE: Make sure sending the announce email using apache email, otherwise announce@apache.org will reject your email.</p>
+</blockquote>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>From: xxx@apache.org
 To: dev@bookkeeper.apache.org, dev@bookkeeper.apache.org, announce@apache.org
