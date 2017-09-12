@@ -2336,7 +2336,8 @@
     font-size: 2rem;
     margin-right: 2rem; }
     .bk-topnav a.bk-brand img {
-      margin-right: 1rem; }
+      margin-right: 1rem;
+      height: 40px; }
 
 blockquote code {
   font-size: 1.1rem;
