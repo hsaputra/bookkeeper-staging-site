@@ -1,0 +1,59 @@
+<h3 id="motivation">Motivation</h3>
+
+<p>We have a good BP process for introducing enhancements, features. However, this process is not well integrated with our github review process, and the content of a BP
+is not used for documentation. This proposal is to propose moving the BP workflow from ASF wiki to Github. There are a couple of reasons for making this change:</p>
+
+<ul>
+  <li>the ASF cwiki is disconnected from Github, and usually becomes out of date quickly. It isn’t really caught up with the code changes.
+Most of the content (documentation, contribution/release guides) are already in website, the ASF wiki is only used for tracking BPs and community meeting notes at this point.</li>
+  <li>Moving BP workflow from wiki to github will leverage the same github review process as code changes. So developers are easier to review BPs and make comments.</li>
+  <li>The BPs can eventually be used as a basis for documentation.</li>
+</ul>
+
+<h3 id="proposed-changes">Proposed Changes</h3>
+
+<p>All the BPs are maintained in <code class="highlighter-rouge">site/bps</code> directory. To make a bookkeeper proposal, a developer does following steps:</p>
+
+<ol>
+  <li>Create an issue <code class="highlighter-rouge">BP-&lt;number&gt;: [capation of bookkeeper proposal]</code>. E.g. <code class="highlighter-rouge">BP-1: 64 bits ledger id support</code>.
+    <ul>
+      <li>Take the next available BP number from this page.</li>
+      <li>Write a brief description about what BP is for in this issue. This issue will be the master issue for tracking the status of this BP and its implementations.
+All the implementations of this BP should be listed and linked to this master issues.</li>
+    </ul>
+  </li>
+  <li>Write the proposal for this BP.
+    <ul>
+      <li>Make a copy of the <a href="https://github.com/apache/bookkeeper/tree/master/site/bps/BP-template.md">BP-Template</a>. Name the BP file as <code class="highlighter-rouge">BP-&lt;number&gt;-[caption-of-proposal].md</code>.
+        <div class="language-shell highlighter-rouge"><pre class="highlight"><code> <span class="nv">$ </span>cp site/bps/BP-template.md site/bps/BP-xyz-capation-of-proposal.md
+</code></pre>
+        </div>
+      </li>
+      <li>Fill the sections listed in the BP template.
+        <ul>
+          <li>issue: replace <code class="highlighter-rouge">&lt;issue-number&gt;</code> with the issue number.</li>
+          <li>state: “Under Discussion”</li>
+          <li>release: leave the release to <code class="highlighter-rouge">N/A</code>. you can only mark a release after a BP is implemented.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Send a PR for this BP. Following the instructions in the pull request template.
+    <ul>
+      <li>add <code class="highlighter-rouge">BP</code> label to this BP</li>
+      <li>don’t associate this PR with any release or milestone</li>
+    </ul>
+  </li>
+  <li>You can tag committers on this RP for reviewers, or start a <code class="highlighter-rouge">[DISCUSS]</code> thread on Apache mailing list. If you are sending an email, please make sure that the subject
+of the thread is of the format <code class="highlighter-rouge">[DISCUSS] BP-&lt;number&gt;: capation of bookkeeper proposal</code>.</li>
+  <li>Once the BP is finalized, reviewed and approved by committers, the BP is accepted. The criteria for acceptance is <a href="http://bookkeeper.apache.org/bylaws.html">lazy majority</a>.</li>
+  <li>Committers merge the PR after a BP is accepted. The development for this BP moves forward with implementations. The BP should be updated if there is anything changed during
+implementing it.</li>
+  <li>After all the implementations for a given BP are completed, a new PR should be sent for changing the state of a BP:
+    <ul>
+      <li>state: “Adopted”</li>
+      <li>release: set to the release that includes this BP.</li>
+    </ul>
+  </li>
+  <li>The final PR for changing BP state will be used as the criteria for marking a BP as completed.</li>
+</ol>

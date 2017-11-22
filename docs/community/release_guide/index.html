@@ -44,7 +44,7 @@
         <a class="navbar-link">Documentation</a>
         <div class="navbar-dropdown is-boxed">
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/latest/overview/overview">
-            Version 4.6.0-SNAPSHOT
+            Version 4.7.0-SNAPSHOT
             <span class="tag is-warning">Development</span>
           </a>
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/latest/api/javadoc">
@@ -55,15 +55,25 @@
           </a>
           <hr class="dropdown-divider">
           
+          <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.0/overview/overview">
+            Release 4.6.0
+            
+          </a>
+          
+          <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.5.1/overview/overview">
+            Release 4.5.1
+            
+          </a>
+          
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.5.0/overview/overview">
             Release 4.5.0
-            
+            <span class="tag is-success">Stable</span>
           </a>
           
           
           <a class="navbar-item" href="/bookkeeper-staging-site/archives/docs/r4.4.0">
             Release 4.4.0
-            <span class="tag is-success">Stable</span>
+            
           </a>
           
           <a class="navbar-item" href="/bookkeeper-staging-site/archives/docs/r4.3.2">
@@ -134,7 +144,7 @@
           <a class="navbar-item" href="/bookkeeper-staging-site/community/release_guide">Release Guide</a>
           <hr class="dropdown-divider">
           <a class="navbar-item" href="/bookkeeper-staging-site/community/presentations">Presentations</a>
-          <a class="navbar-item" href="https://cwiki.apache.org/confluence/display/BOOKKEEPER/BookKeeper+Proposals">BookKeeper Proposals</a>
+          <a class="navbar-item" href="/bookkeeper-staging-site/community/bookkeeper_proposals">BookKeeper Proposals</a>
         </div>
       </div>
 
@@ -650,10 +660,12 @@ force push backed out local git branch to github again.</p>
   <li>
     <p>Copy the BookKeeper source and binary distribution, and their GPG signatures:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> cp target/bookkeeper-${VERSION}-src.tar.gz bookkeeper/${RC_DIR}/bookkeeper-${VERSION}-src.tar.gz
- cp target/bookkeeper-${VERSION}-src.tar.gz.asc bookkeeper/${RC_DIR}/bookkeeper-${VERSION}-src.tar.gz.asc
- cp bookkeeper-server/target/bookkeeper-server-${VERSION}-bin.tar.gz bookkeeper/${RC_DIR}/bookkeeper-server-${VERSION}-bin.tar.gz
- cp bookkeeper-server/target/bookkeeper-server-${VERSION}-bin.tar.gz.asc bookkeeper/${RC_DIR}/bookkeeper-server-${VERSION}-bin.tar.gz.asc
+    <div class="highlighter-rouge"><pre class="highlight"><code> cp bookkeeper-dist/target/bookkeeper-${VERSION}-src.tar.gz bookkeeper/${RC_DIR}/bookkeeper-${VERSION}-src.tar.gz
+ cp bookkeeper-dist/target/bookkeeper-${VERSION}-src.tar.gz.asc bookkeeper/${RC_DIR}/bookkeeper-${VERSION}-src.tar.gz.asc
+ cp bookkeeper-dist/server/target/bookkeeper-server-${VERSION}-bin.tar.gz bookkeeper/${RC_DIR}/bookkeeper-server-${VERSION}-bin.tar.gz
+ cp bookkeeper-dist/server/target/bookkeeper-server-${VERSION}-bin.tar.gz.asc bookkeeper/${RC_DIR}/bookkeeper-server-${VERSION}-bin.tar.gz.asc
+ cp bookkeeper-dist/all/target/bookkeeper-all-${VERSION}-bin.tar.gz bookkeeper/${RC_DIR}/bookkeeper-all-${VERSION}-bin.tar.gz
+ cp bookkeeper-dist/all/target/bookkeeper-all-${VERSION}-bin.tar.gz.asc bookkeeper/${RC_DIR}/bookkeeper-all-${VERSION}-bin.tar.gz.asc
 </code></pre>
     </div>
   </li>
@@ -665,6 +677,8 @@ force push backed out local git branch to github again.</p>
  shasum bookkeeper-${VERSION}-src.tar.gz &gt; bookkeeper-${VERSION}-src.tar.gz.sha1
  md5sum bookkeeper-server-${VERSION}-bin.tar.gz &gt; bookkeeper-server-${VERSION}-bin.tar.gz.md5
  shasum bookkeeper-server-${VERSION}-bin.tar.gz &gt; bookkeeper-server-${VERSION}-bin.tar.gz.sha1
+ md5sum bookkeeper-all-${VERSION}-bin.tar.gz &gt; bookkeeper-all-${VERSION}-bin.tar.gz.md5
+ shasum bookkeeper-all-${VERSION}-bin.tar.gz &gt; bookkeeper-all-${VERSION}-bin.tar.gz.sha1
 </code></pre>
     </div>
   </li>

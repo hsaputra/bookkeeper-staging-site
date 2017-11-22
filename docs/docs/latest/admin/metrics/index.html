@@ -44,7 +44,7 @@
         <a class="navbar-link">Documentation</a>
         <div class="navbar-dropdown is-boxed">
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/latest/overview/overview">
-            Version 4.6.0-SNAPSHOT
+            Version 4.7.0-SNAPSHOT
             <span class="tag is-warning">Development</span>
           </a>
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/latest/api/javadoc">
@@ -55,15 +55,25 @@
           </a>
           <hr class="dropdown-divider">
           
+          <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.0/overview/overview">
+            Release 4.6.0
+            
+          </a>
+          
+          <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.5.1/overview/overview">
+            Release 4.5.1
+            
+          </a>
+          
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.5.0/overview/overview">
             Release 4.5.0
-            
+            <span class="tag is-success">Stable</span>
           </a>
           
           
           <a class="navbar-item" href="/bookkeeper-staging-site/archives/docs/r4.4.0">
             Release 4.4.0
-            <span class="tag is-success">Stable</span>
+            
           </a>
           
           <a class="navbar-item" href="/bookkeeper-staging-site/archives/docs/r4.3.2">
@@ -134,7 +144,7 @@
           <a class="navbar-item" href="/bookkeeper-staging-site/community/release_guide">Release Guide</a>
           <hr class="dropdown-divider">
           <a class="navbar-item" href="/bookkeeper-staging-site/community/presentations">Presentations</a>
-          <a class="navbar-item" href="https://cwiki.apache.org/confluence/display/BOOKKEEPER/BookKeeper+Proposals">BookKeeper Proposals</a>
+          <a class="navbar-item" href="/bookkeeper-staging-site/community/bookkeeper_proposals">BookKeeper Proposals</a>
         </div>
       </div>
 
@@ -284,6 +294,13 @@
     <li>
       <a href="../../admin/upgrade">
       Upgrade
+      </a>
+    </li>
+    
+    
+    <li>
+      <a href="../../admin/http">
+      BookKeeper Admin REST API
       </a>
     </li>
     
@@ -456,7 +473,7 @@
     </tr>
     <tr>
       <td style="text-align: left"><a href="https://prometheus.io/">Prometheus</a></td>
-      <td style="text-align: left"><code class="highlighter-rouge">org.apache.bookkeeper.stats.PrometheusMetricsProvider</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">org.apache.bookkeeper.stats.prometheus.PrometheusMetricsProvider</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><a href="https://twitter.github.io/finagle/guide/Metrics.html">Finagle</a></td>

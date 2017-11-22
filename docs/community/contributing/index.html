@@ -44,7 +44,7 @@
         <a class="navbar-link">Documentation</a>
         <div class="navbar-dropdown is-boxed">
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/latest/overview/overview">
-            Version 4.6.0-SNAPSHOT
+            Version 4.7.0-SNAPSHOT
             <span class="tag is-warning">Development</span>
           </a>
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/latest/api/javadoc">
@@ -55,15 +55,25 @@
           </a>
           <hr class="dropdown-divider">
           
+          <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.0/overview/overview">
+            Release 4.6.0
+            
+          </a>
+          
+          <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.5.1/overview/overview">
+            Release 4.5.1
+            
+          </a>
+          
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.5.0/overview/overview">
             Release 4.5.0
-            
+            <span class="tag is-success">Stable</span>
           </a>
           
           
           <a class="navbar-item" href="/bookkeeper-staging-site/archives/docs/r4.4.0">
             Release 4.4.0
-            <span class="tag is-success">Stable</span>
+            
           </a>
           
           <a class="navbar-item" href="/bookkeeper-staging-site/archives/docs/r4.3.2">
@@ -134,7 +144,7 @@
           <a class="navbar-item" href="/bookkeeper-staging-site/community/release_guide">Release Guide</a>
           <hr class="dropdown-divider">
           <a class="navbar-item" href="/bookkeeper-staging-site/community/presentations">Presentations</a>
-          <a class="navbar-item" href="https://cwiki.apache.org/confluence/display/BOOKKEEPER/BookKeeper+Proposals">BookKeeper Proposals</a>
+          <a class="navbar-item" href="/bookkeeper-staging-site/community/bookkeeper_proposals">BookKeeper Proposals</a>
         </div>
       </div>
 
@@ -222,6 +232,7 @@
           <li><a href="#clone-the-repository-locally" id="markdown-toc-clone-the-repository-locally">Clone the repository locally</a></li>
           <li><a href="#optional-ide-setup" id="markdown-toc-optional-ide-setup">[Optional] IDE Setup</a>            <ul>
               <li><a href="#intellij" id="markdown-toc-intellij">IntelliJ</a>                <ul>
+                  <li><a href="#enable-annotation-processing" id="markdown-toc-enable-annotation-processing">Enable Annotation Processing</a></li>
                   <li><a href="#checkstyle" id="markdown-toc-checkstyle">Checkstyle</a></li>
                 </ul>
               </li>
@@ -362,6 +373,28 @@ $ git remote add apache-github https://github.com/apache/bookkeeper
 <p>Depending on your preferred development environment, you may need to prepare it to develop BookKeeper code.</p>
 
 <h5 id="intellij">IntelliJ</h5>
+
+<h6 id="enable-annotation-processing">Enable Annotation Processing</h6>
+
+<p>To configure annotation processing in IntelliJ:</p>
+
+<ol>
+  <li>Open Annotation Processors Settings dialog box by going to Settings -&gt; Build, Execution, Deployment -&gt; Compiler -&gt; Annotation Processors.</li>
+  <li>Select the following buttons:
+    <ol>
+      <li>“Enable annotation processing”</li>
+      <li>“Obtain processors from project classpath”</li>
+      <li>“Store generated sources relative to: Module content root”</li>
+    </ol>
+  </li>
+  <li>Set the generated source directories to be equal to the Maven directories:
+    <ol>
+      <li>Set “Production sources directory:” to “target/generated-sources/annotations”.</li>
+      <li>Set “Test sources directory:” to “target/generated-test-sources/test-annotations”.</li>
+    </ol>
+  </li>
+  <li>Click “OK”.</li>
+</ol>
 
 <h6 id="checkstyle">Checkstyle</h6>
 <p>IntelliJ supports checkstyle within the IDE using the Checkstyle-IDEA plugin.</p>
