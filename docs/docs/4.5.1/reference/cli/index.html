@@ -55,6 +55,11 @@
           </a>
           <hr class="dropdown-divider">
           
+          <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.1/overview/overview">
+            Release 4.6.1
+            
+          </a>
+          
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.0/overview/overview">
             Release 4.6.0
             
@@ -140,6 +145,7 @@
           <hr class="dropdown-divider">
           <a class="navbar-item" href="/bookkeeper-staging-site/community/contributing">Contribution Guide</a>
           <a class="navbar-item" href="/bookkeeper-staging-site/community/coding_guide">Coding Guide</a>
+          <a class="navbar-item" href="/bookkeeper-staging-site/community/testing">Testing Guide</a>
           <a class="navbar-item" href="/bookkeeper-staging-site/community/issue-report">Issue Report Guide</a>
           <a class="navbar-item" href="/bookkeeper-staging-site/community/release_guide">Release Guide</a>
           <hr class="dropdown-divider">
@@ -519,9 +525,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper bookie 
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper bookie 
+</code></pre></div></div>
 <hr />
 
 <h3 id="bookkeeper-localbookie">localbookie</h3>
@@ -530,9 +535,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper localbookie N
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper localbookie N
+</code></pre></div></div>
 <hr />
 
 <h3 id="bookkeeper-autorecovery">autorecovery</h3>
@@ -541,9 +545,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper autorecovery 
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper autorecovery 
+</code></pre></div></div>
 <hr />
 
 <h3 id="bookkeeper-upgrade">upgrade</h3>
@@ -552,9 +555,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper upgrade 
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper upgrade 
+</code></pre></div></div>
 <hr />
 
 <h3 id="bookkeeper-shell">shell</h3>
@@ -563,9 +565,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell 
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell 
+</code></pre></div></div>
 <hr />
 
 <h3 id="bookkeeper-help">help</h3>
@@ -574,9 +575,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper <span class="nb">help</span> 
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper <span class="nb">help</span> 
+</code></pre></div></div>
 
 <h2 id="the-bookkeeper-shell">The BookKeeper shell</h2>
 
@@ -586,10 +586,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell autorecovery <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell autorecovery <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -623,10 +622,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell bookieFormat <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell bookieFormat <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -665,9 +663,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell bookieinfo
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell bookieinfo
+</code></pre></div></div>
 
 <p><!-- if command.options --></p>
 <hr />
@@ -678,10 +675,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell bookiesanity <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell bookiesanity <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -715,9 +711,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell decommissionbookie
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell decommissionbookie
+</code></pre></div></div>
 
 <p><!-- if command.options --></p>
 <hr />
@@ -728,10 +723,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell deleteledger <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell deleteledger <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -765,9 +759,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell expandstorage
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell expandstorage
+</code></pre></div></div>
 
 <p><!-- if command.options --></p>
 <hr />
@@ -778,9 +771,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell <span class="nb">help</span>
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell <span class="nb">help</span>
+</code></pre></div></div>
 
 <p><!-- if command.options --></p>
 <hr />
@@ -791,9 +783,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell lastmark
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell lastmark
+</code></pre></div></div>
 
 <p><!-- if command.options --></p>
 <hr />
@@ -804,10 +795,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell ledger <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell ledger <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -836,10 +826,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell ledgermetadata <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell ledgermetadata <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -868,10 +857,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell listbookies <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell listbookies <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -910,10 +898,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell listfilesondisc <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell listfilesondisc <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -952,10 +939,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell listledgers <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell listledgers <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -984,10 +970,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell listunderreplicated <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell listunderreplicated <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -1021,10 +1006,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell metaformat <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell metaformat <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -1058,10 +1042,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell lostbookierecoverydelay <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell lostbookierecoverydelay <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -1095,10 +1078,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell readjournal <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell readjournal <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -1132,10 +1114,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell readledger <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell readledger <span class="se">\</span>
   &lt;ledger_id&gt; <span class="o">[</span>&lt;start_entry_id&gt; <span class="o">[</span>&lt;end_entry_id&gt;]]
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><!-- if command.options --></p>
 <hr />
@@ -1146,11 +1127,10 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell readlog <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell readlog <span class="se">\</span>
   &lt;entry_log_id | entry_log_file_name&gt; <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -1199,11 +1179,10 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell recover <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell recover <span class="se">\</span>
   &lt;bookieSrc&gt; <span class="o">[</span>&lt;bookieDest&gt;] <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -1232,10 +1211,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell simpletest <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell simpletest <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -1279,9 +1257,8 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell triggeraudit
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell triggeraudit
+</code></pre></div></div>
 
 <p><!-- if command.options --></p>
 <hr />
@@ -1292,10 +1269,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell updatecookie <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell updatecookie <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -1324,10 +1300,9 @@
 
 <h5>Usage</h5>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bookkeeper-server/bin/bookkeeper shell updateledgers <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bookkeeper-server/bin/bookkeeper shell updateledgers <span class="se">\</span>
   &lt;options&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5>Options</h5>
 
@@ -1582,7 +1557,7 @@ tippy('#record-popover', {
   <div class="container">
     <div class="content has-text-centered">
       <p>
-        Copyright &copy; 2016 - 2017 <a href="https://www.apache.org/">The Apache Software Foundation</a>,<br /> licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, version 2.0</a>.
+        Copyright &copy; 2016 - 2018 <a href="https://www.apache.org/">The Apache Software Foundation</a>,<br /> licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, version 2.0</a>.
       </p>
     </div>
   </div>

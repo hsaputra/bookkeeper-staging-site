@@ -55,6 +55,11 @@
           </a>
           <hr class="dropdown-divider">
           
+          <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.1/overview/overview">
+            Release 4.6.1
+            
+          </a>
+          
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.0/overview/overview">
             Release 4.6.0
             
@@ -140,6 +145,7 @@
           <hr class="dropdown-divider">
           <a class="navbar-item" href="/bookkeeper-staging-site/community/contributing">Contribution Guide</a>
           <a class="navbar-item" href="/bookkeeper-staging-site/community/coding_guide">Coding Guide</a>
+          <a class="navbar-item" href="/bookkeeper-staging-site/community/testing">Testing Guide</a>
           <a class="navbar-item" href="/bookkeeper-staging-site/community/issue-report">Issue Report Guide</a>
           <a class="navbar-item" href="/bookkeeper-staging-site/community/release_guide">Release Guide</a>
           <hr class="dropdown-divider">
@@ -225,10 +231,11 @@ Please refer to our <a href="https://github.com/apache/bookkeeper/blob/master/bu
 <p>Apache BookKeeper code should follow the <a href="http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html">Sun Java Coding Convention</a>, with the following additions.</p>
 
 <ul>
-  <li>Lines can be up to 120 characters long.</li>
+  <li>Lines can not be longer than 120 characters.</li>
   <li>Indentation should be <strong>4 spaces</strong>. Tabs should never be used.</li>
   <li>Use curly braces even for single-line ifs and elses.</li>
-  <li>No @author tags in any javadoc</li>
+  <li>No @author tags in any javadoc.</li>
+  <li>Use try-with-resources blocks whenever is possible.</li>
   <li><strong>TODO</strong>s should be associated to at least one issue. E.g. <code class="highlighter-rouge">// TODO: make this parameter configurable (https://github.com/apache/bookkeeper/issues/280)</code></li>
 </ul>
 
@@ -242,6 +249,8 @@ Please refer to our <a href="https://github.com/apache/bookkeeper/blob/master/bu
 </ul>
 
 <p>Please use these libraries whenever possible rather than introducing more dependencies.</p>
+
+<p>Dependencies are bundled with our binary distributions, so we need to attach the relevant licenses. See <a href="/community/licensing">Third party dependencies and licensing</a> for a guide on how to do this correctly.</p>
 
 <h4 id="future">Future</h4>
 
@@ -262,7 +271,7 @@ Please refer to our <a href="https://github.com/apache/bookkeeper/blob/master/bu
 <h4 id="logging-levels">Logging levels</h4>
 
 <ul>
-  <li><em>INFO</em> is the level you should assume the software will be run in. INFo messages are things which are not bad but which the user will definitely want to know about every time they occur.</li>
+  <li><em>INFO</em> is the level you should assume the software will be run in. INFO messages are things which are not bad but which the user will definitely want to know about every time they occur.</li>
   <li><em>TRACE</em> and <em>DEBUG</em> are both things you turn on when something is wrong and you want to figure out what is going on. <em>DEBUG</em> should not be so fine grained that it will seriously affect performance of the program. <em>TRACE</em> can be anything. Both <em>DEBUG</em> and <em>TRACE</em> statements should be considered to be wrapped in an <em>if (logger.isDebugEnabled)</em> or <em>if (logger.isTraceEnabled)</em> check to avoid performance degradation.</li>
   <li><em>WARN</em> and <em>ERROR</em> indicate something that is <strong>BAD</strong>. Use <em>WARN</em> if you aren’t totally sure it is bad, and <em>ERROR</em> if you are.</li>
 </ul>
@@ -328,7 +337,7 @@ Please refer to our <a href="https://github.com/apache/bookkeeper/blob/master/bu
   <div class="container">
     <div class="content has-text-centered">
       <p>
-        Copyright &copy; 2016 - 2017 <a href="https://www.apache.org/">The Apache Software Foundation</a>,<br /> licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, version 2.0</a>.
+        Copyright &copy; 2016 - 2018 <a href="https://www.apache.org/">The Apache Software Foundation</a>,<br /> licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, version 2.0</a>.
       </p>
     </div>
   </div>
