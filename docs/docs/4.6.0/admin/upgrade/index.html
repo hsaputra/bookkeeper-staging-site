@@ -44,7 +44,7 @@
         <a class="navbar-link">Documentation</a>
         <div class="navbar-dropdown is-boxed">
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/latest/overview/overview">
-            Version 4.7.0-SNAPSHOT
+            Version 4.8.0-SNAPSHOT
             <span class="tag is-warning">Development</span>
           </a>
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/latest/api/javadoc">
@@ -54,6 +54,11 @@
             Javadoc
           </a>
           <hr class="dropdown-divider">
+          
+          <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.2/overview/overview">
+            Release 4.6.2
+            <span class="tag is-success">Stable</span>
+          </a>
           
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.1/overview/overview">
             Release 4.6.1
@@ -72,7 +77,7 @@
           
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.5.0/overview/overview">
             Release 4.5.0
-            <span class="tag is-success">Stable</span>
+            
           </a>
           
           
@@ -522,6 +527,10 @@ are allowed to talk to old bookies; if clients are not allowed to talk to old bo
 
 <p>We describes the general upgrade method in Apache BookKeeper as above. We will cover the details for individual versions.</p>
 
+<h3 id="45x-to-46x-upgrade">4.5.x to 4.6.x upgrade</h3>
+
+<p>There isn’t any protocol related backward compabilities changes in 4.6.x. So you can follow the general upgrade sequence to upgrade from 4.5.x to 4.6.x.</p>
+
 <h3 id="44x-to-45x-upgrade">4.4.x to 4.5.x upgrade</h3>
 
 <p>There isn’t any protocol related backward compabilities changes in 4.5.0. So you can follow the general upgrade sequence to upgrade from 4.4.x to 4.5.x.
@@ -535,7 +544,6 @@ However, we list a list of things that you might want to know.</p>
 </ol>
 
 <p>If you are planning to upgrade a non-secured cluster to a secured cluster enabling security features in 4.5.0, please read <a href="../../security/overview">BookKeeper Security</a> for more details.</p>
-
 
         </section>
 
@@ -555,6 +563,7 @@ However, we list a list of things that you might want to know.</p>
 <li class="toc-entry toc-h2"><a href="#upgrade-steps">Upgrade Steps</a></li>
 <li class="toc-entry toc-h3"><a href="#upgrade-bookies">Upgrade Bookies</a></li>
 <li class="toc-entry toc-h2"><a href="#upgrade-guides">Upgrade Guides</a></li>
+<li class="toc-entry toc-h3"><a href="#45x-to-46x-upgrade">4.5.x to 4.6.x upgrade</a></li>
 <li class="toc-entry toc-h3"><a href="#44x-to-45x-upgrade">4.4.x to 4.5.x upgrade</a></li>
 </ul>
 </div>

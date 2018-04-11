@@ -44,7 +44,7 @@
         <a class="navbar-link">Documentation</a>
         <div class="navbar-dropdown is-boxed">
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/latest/overview/overview">
-            Version 4.7.0-SNAPSHOT
+            Version 4.8.0-SNAPSHOT
             <span class="tag is-warning">Development</span>
           </a>
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/latest/api/javadoc">
@@ -54,6 +54,11 @@
             Javadoc
           </a>
           <hr class="dropdown-divider">
+          
+          <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.2/overview/overview">
+            Release 4.6.2
+            <span class="tag is-success">Stable</span>
+          </a>
           
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.6.1/overview/overview">
             Release 4.6.1
@@ -72,7 +77,7 @@
           
           <a class="navbar-item" href="/bookkeeper-staging-site/docs/4.5.0/overview/overview">
             Release 4.5.0
-            <span class="tag is-success">Stable</span>
+            
           </a>
           
           
@@ -591,7 +596,7 @@ interface (the interface it uses to establish its identity). By default, loopbac
       <td><code>numLongPollWorkerThreads</code></td>
       <td><p>The number of threads that handle long poll requests. If zero, long poll requests are handled by <a href="//netty.io/wiki/thread-model.html">Netty threads</a> directly.</p>
 </td>
-      <td><code>10</code></td>
+      <td><code>0</code></td>
     </tr>
     
     <tr id="numJournalCallbackThreads">
@@ -1102,6 +1107,23 @@ the unflushed data. If the ledger is replicated to multiple bookies, the chances
       <td><code>1073741824</code></td>
     </tr>
     
+    <tr id="minUsableSizeForEntryLogCreation">
+      <td><code>minUsableSizeForEntryLogCreation</code></td>
+      <td><p>Minimum safe usable size to be available in ledger directory for bookie to create entry log files (in bytes).
+This parameter allows creating entry log files when there are enough disk spaces, even when
+the bookie is running at readonly mode because of the disk usage is exceeding <code class="highlighter-rouge">diskUsageThreshold</code>.
+Because compaction, journal replays can still write data to disks when a bookie is readonly.</p>
+</td>
+      <td><code>1.2 * `logSizeLimit`</code></td>
+    </tr>
+    
+    <tr id="minUsableSizeForHighPriorityWrites">
+      <td><code>minUsableSizeForHighPriorityWrites</code></td>
+      <td><p>Minimum safe usable size to be available in ledger directory for bookie to accept high priority writes even it is in readonly mode.</p>
+</td>
+      <td><code>1.2 * `logSizeLimit`</code></td>
+    </tr>
+    
     <tr id="flushInterval">
       <td><code>flushInterval</code></td>
       <td><p>When entryLogPerLedgerEnabled is enabled, checkpoint doesn’t happens when a new active entrylog is created / previous one is rolled over. Instead SyncThread checkpoints periodically with ‘flushInterval’ delay (in milliseconds) in between executions. Checkpoint flushes both ledger entryLogs and ledger index pages to disk.  Flushing entrylog and index files will introduce much random disk I/O. If separating journal dir and ledger dirs each on different devices, flushing would not affect performance. But if putting journal dir and ledger dirs on same device, performance degrade significantly on too frequent flushing. You can consider increment flush interval to get better performance, but you need to pay more time on bookie server restart after failure. This config is used only when entryLogPerLedgerEnabled is enabled.</p>
@@ -1206,7 +1228,7 @@ the unflushed data. If the ledger is replicated to multiple bookies, the chances
       <td><code>minorCompactionInterval</code></td>
       <td><p>Interval to run minor compaction, in seconds. If it is set to less than zero, the minor compaction is disabled.</p>
 </td>
-      <td></td>
+      <td><code>3600</code></td>
     </tr>
     
     <tr id="compactionMaxOutstandingRequests">
@@ -1365,7 +1387,7 @@ log file with normal add operations.</p>
       <td><code>skipListSizeLimit</code></td>
       <td><p>The skip list data size limitation (default 64MB) in EntryMemTable</p>
 </td>
-      <td><code>67108864L</code></td>
+      <td><code>67108864</code></td>
     </tr>
     
     <tr id="skipListArenaChunkSize">
